@@ -20,7 +20,7 @@ export default function Footer() {
             <Image src="/men.png" alt="Shoe Mart Logo" width={36} height={36} className="rounded-full bg-white" />
             <span className="font-bold text-xl tracking-wide text-white">Shoe Mart.pk</span>
           </div>
-          <p className="text-gray-400 text-sm">Pakistan's premium online shoe store. Trendy, comfortable, and affordable footwear for everyone.</p>
+          <p className="text-gray-400 text-sm">Pakistan&rsquo;s premium online shoe store. Trendy, comfortable, and affordable footwear for everyone.</p>
         </div>
         {/* Quick Links */}
         <div className="flex flex-col gap-2 min-w-[120px]">

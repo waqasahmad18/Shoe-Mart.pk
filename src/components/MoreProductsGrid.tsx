@@ -56,7 +56,7 @@ function StarRating({ rating }: { rating: number }) {
 export default function MoreProductsGrid() {
   return (
     <section className="w-full py-10 px-2 md:px-0" data-aos="fade-up">
-      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">More Shoes You'll Love</h2>
+      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">More Shoes You&apos;ll Love</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
         {moreProducts.map((product, idx) => (
           <div key={product.id} className="relative bg-white rounded-2xl shadow-lg overflow-hidden group transition-transform hover:-translate-y-1 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay={idx * 100}>
