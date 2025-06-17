@@ -35,12 +35,12 @@ export default function WhyChooseUsSection() {
   return (
     <section className="w-full py-16 px-4 bg-white flex flex-col items-center justify-center" data-aos="fade-up">
       <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-10 text-center">Why Choose <span className="text-yellow-500">Shoe Mart.pk</span>?</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl w-full mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-6xl w-full mx-auto">
         {features.map((feature, idx) => (
-          <div key={idx} className="flex flex-col items-center bg-gray-50 rounded-2xl shadow-md p-8 hover:shadow-xl transition-shadow duration-200 text-center" data-aos="zoom-in" data-aos-delay={idx * 100}>
+          <div key={idx} className="flex flex-col items-center bg-white rounded-2xl shadow-md p-6 md:p-8 hover:shadow-xl transition-shadow duration-200 text-center" data-aos="zoom-in" data-aos-delay={idx * 100}>
             <div className="mb-4 text-yellow-500">{feature.icon}</div>
-            <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
-            <p className="text-gray-600 text-sm">{feature.desc}</p>
+            <h3 className="font-bold text-base md:text-lg mb-2">{feature.title}</h3>
+            <p className="text-gray-600 text-sm md:text-base">{feature.desc}</p>
           </div>
         ))}
       </div>

@@ -13,30 +13,34 @@ const menuItems = [
 export default function Footer() {
   return (
     <footer className="w-full bg-[#111] text-gray-200 pt-14 pb-6 px-6 border-t border-gray-800 mt-0" data-aos="fade-up">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 md:gap-0 justify-between items-start md:items-center mb-8">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 md:gap-0 justify-between items-center md:items-center mb-8 text-center md:text-left">
         {/* Logo & About */}
-        <div className="flex flex-col items-start gap-3 max-w-xs">
-          <div className="flex items-center gap-2 mb-2">
+        <div className="flex flex-col items-center md:items-start gap-3 max-w-xs">
+          <div className="flex items-center gap-2 mb-2 justify-center md:justify-start">
             <Image src="/men.png" alt="Shoe Mart Logo" width={36} height={36} className="rounded-full bg-white" />
             <span className="font-bold text-xl tracking-wide text-white">Shoe Mart.pk</span>
           </div>
           <p className="text-gray-400 text-sm">Pakistan&rsquo;s premium online shoe store. Trendy, comfortable, and affordable footwear for everyone.</p>
         </div>
         {/* Quick Links */}
-        <div className="flex flex-col gap-2 min-w-[120px]">
+        <div className="flex flex-col gap-2 min-w-[120px] items-center md:items-start">
           <h4 className="font-semibold text-white mb-2">Quick Links</h4>
-          {menuItems.map((item) => (
-            <Link key={item.name} href={item.href} className="hover:text-yellow-400 transition-colors text-sm">
-              {item.name}
-            </Link>
-          ))}
+          <ul className="flex flex-col gap-1">
+            {menuItems.map((item) => (
+              <li key={item.name}>
+                <Link href={item.href} className="hover:text-yellow-400 hover:underline transition-colors text-sm">
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
         {/* Contact & Social */}
-        <div className="flex flex-col gap-3 min-w-[180px]">
+        <div className="flex flex-col gap-3 min-w-[180px] items-center md:items-start">
           <h4 className="font-semibold text-white mb-2">Contact</h4>
           <span className="text-sm text-gray-400">support@shoemart.pk</span>
           <span className="text-sm text-gray-400">+92 300 1234567</span>
-          <div className="flex gap-4 mt-2">
+          <div className="flex gap-4 mt-2 justify-center md:justify-start">
             {/* Facebook */}
             <a href="#" aria-label="Facebook" className="hover:text-yellow-400">
               <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>

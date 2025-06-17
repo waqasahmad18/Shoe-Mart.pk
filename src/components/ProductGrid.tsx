@@ -57,25 +57,25 @@ export default function ProductGrid() {
   return (
     <section className="w-full py-10 px-2 md:px-0" data-aos="fade-up">
       <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Featured Products</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-7xl mx-auto">
         {products.map((product, idx) => (
-          <div key={product.id} className="relative bg-white rounded-2xl shadow-lg overflow-hidden group transition-transform hover:-translate-y-1 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay={idx * 100}>
+          <div key={product.id} className="relative bg-white rounded-2xl shadow-lg overflow-hidden group transition-transform hover:-translate-y-1 hover:shadow-2xl p-2 md:p-0" data-aos="zoom-in" data-aos-delay={idx * 100}>
             {/* Discount Badge */}
-            <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow">-{product.discount}%</span>
+            <span className="absolute top-2 left-2 md:top-3 md:left-3 bg-red-500 text-white text-xs font-bold px-2 md:px-3 py-1 rounded-full z-10 shadow">-{product.discount}%</span>
             {/* Product Image */}
-            <div className="w-full h-48 relative">
+            <div className="w-full h-36 md:h-48 relative">
               <Image src={product.image} alt={product.title} fill style={{objectFit:'cover'}} />
             </div>
             {/* Product Info */}
-            <div className="p-4 flex flex-col gap-2">
-              <h3 className="font-semibold text-lg text-gray-900 truncate">{product.title}</h3>
-              <div className="flex items-center gap-2">
-                <span className="text-xl font-bold text-black">Rs. {product.price}</span>
+            <div className="p-2 md:p-4 flex flex-col gap-1 md:gap-2">
+              <h3 className="font-semibold text-sm md:text-lg text-gray-900 truncate">{product.title}</h3>
+              <div className="flex items-center gap-1 md:gap-2">
+                <span className="text-base md:text-xl font-bold text-black">Rs. {product.price}</span>
                 <StarRating rating={product.rating} />
                 <span className="text-xs text-gray-500">({product.reviews})</span>
               </div>
               {/* Add to Cart Button (on hover) */}
-              <button className="mt-2 bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-2 px-4 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">Add to Cart</button>
+              <button className="mt-1 md:mt-2 bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-1.5 md:py-2 px-2 md:px-4 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-xs md:text-base">Add to Cart</button>
             </div>
           </div>
         ))}
