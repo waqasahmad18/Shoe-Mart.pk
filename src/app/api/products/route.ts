@@ -1,6 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
 import { NextRequest, NextResponse } from 'next/server';
-import mongoose, { Schema, model, models } from 'mongoose';
 import { connectDB } from '@/lib/mongodb';
 import { model as inventoryModel, models as inventoryModels, Schema as InventorySchema } from 'mongoose';
 

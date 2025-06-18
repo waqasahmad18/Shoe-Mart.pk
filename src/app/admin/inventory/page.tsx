@@ -1,10 +1,29 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  salePrice?: number;
+  sku: string;
+  category: string;
+  description?: string;
+  images: string[];
+}
+
+interface InventoryItem {
+  _id: string;
+  productId: Product;
+  quantity: number;
+  location: string;
+  updatedAt?: string;
+}
+
 export default function AdminInventoryPage() {
-  const [inventory, setInventory] = useState([]);
+  const [inventory, setInventory] = useState<InventoryItem[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const [selected, setSelected] = useState<any>(null);
+  const [selected, setSelected] = useState<InventoryItem | null>(null);
   const [quantity, setQuantity] = useState('');
   const [updating, setUpdating] = useState(false);
 
@@ -12,19 +31,19 @@ export default function AdminInventoryPage() {
     fetch('/api/inventory').then(res => res.json()).then(setInventory);
   }, []);
 
-  const openForm = (item: any) => {
+  const openForm = (item: InventoryItem) => {
     setSelected(item);
     setQuantity(item.quantity.toString());
     setShowForm(true);
   };
 
-  const handleUpdate = async (e: any) => {
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setUpdating(true);
     await fetch('/api/inventory', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productId: selected.productId._id, quantity: Number(quantity) }),
+      body: JSON.stringify({ productId: selected?.productId._id, quantity: Number(quantity) }),
     });
     setShowForm(false);
     setUpdating(false);
@@ -47,7 +66,7 @@ export default function AdminInventoryPage() {
             </tr>
           </thead>
           <tbody>
-            {inventory.map((item: any) => (
+            {inventory.map((item: InventoryItem) => (
               <tr key={item._id} className="border-b">
                 <td className="p-2 md:p-3 font-semibold">{item.productId?.name}</td>
                 <td className="p-2 md:p-3">{item.productId?.sku}</td>

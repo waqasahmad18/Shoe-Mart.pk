@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import mongoose, { Schema, model, models } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 import { connectDB } from '@/lib/mongodb';
 
 const InventorySchema = new Schema({

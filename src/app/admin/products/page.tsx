@@ -3,8 +3,19 @@ import React, { useState, useEffect } from 'react';
 
 const CATEGORIES = ['Men', 'Women', 'Kids'];
 
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  salePrice?: number;
+  sku: string;
+  category: string;
+  description?: string;
+  images: string[];
+}
+
 export default function AdminProductsPage() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({
     name: '', price: '', salePrice: '', sku: '', category: '', description: '', images: [] as string[], imageFiles: [] as File[]
@@ -57,14 +68,14 @@ export default function AdminProductsPage() {
     return urls;
   };
 
-  const handleEdit = (product: any) => {
+  const handleEdit = (product: Product) => {
     setForm({
       name: product.name,
-      price: product.price,
-      salePrice: product.salePrice || '',
+      price: product.price.toString(),
+      salePrice: product.salePrice ? product.salePrice.toString() : '',
       sku: product.sku,
       category: product.category,
-      description: product.description,
+      description: product.description || '',
       images: product.images || [],
       imageFiles: [],
     });
@@ -149,7 +160,7 @@ export default function AdminProductsPage() {
             </tr>
           </thead>
           <tbody>
-            {products.map((p: any) => (
+            {products.map((p: Product) => (
               <tr key={p._id} className="border-b">
                 <td className="p-2 md:p-3 flex gap-2 flex-wrap">
                   {p.images?.map((img: string, i: number) => (
