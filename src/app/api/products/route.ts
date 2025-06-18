@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
 import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongodb';
-import { model as inventoryModel, models as inventoryModels, Schema as InventorySchema } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
