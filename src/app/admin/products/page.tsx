@@ -28,12 +28,12 @@ export default function AdminProductsPage() {
     fetch('/api/products').then(res => res.json()).then(setProducts);
   }, []);
 
-  const handleInput = (e: any) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm(f => ({ ...f, [e.target.name]: e.target.value }));
   };
 
-  const handleFiles = (e: any) => {
-    const files = Array.from(e.target.files).slice(0, 5) as File[];
+  const handleFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files ?? []).slice(0, 5) as File[];
     setForm(f => ({ ...f, imageFiles: files }));
   };
 
@@ -89,7 +89,7 @@ export default function AdminProductsPage() {
     fetch('/api/products').then(res => res.json()).then(setProducts);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setUploading(true);
     setError('');
@@ -132,8 +132,8 @@ export default function AdminProductsPage() {
       setForm({ name: '', price: '', salePrice: '', sku: '', category: '', description: '', images: [], imageFiles: [] });
       setEditId(null);
       fetch('/api/products').then(res => res.json()).then(setProducts);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : String(err));
     } finally {
       setUploading(false);
     }
