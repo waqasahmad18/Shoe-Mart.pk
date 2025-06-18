@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Footer from '@/components/Footer';
+import ProductCard from '@/components/ProductCard';
 
 interface Product {
   _id: string;
@@ -167,48 +168,7 @@ export default function KidsCollection() {
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
             {filteredProducts.map((product) => (
-              <div key={product._id} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden group">
-                <div className="relative aspect-square overflow-hidden">
-                  <Image
-                    src={product.images[0]}
-                    alt={product.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  {product.salePrice && (
-                    <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      SALE
-                    </div>
-                  )}
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900 text-sm mb-2 line-clamp-2">
-                    {product.name}
-                  </h3>
-                  <div className="flex items-center gap-2 mb-2">
-                    {product.salePrice ? (
-                      <>
-                        <span className="text-lg font-bold text-gray-900">
-                          {formatPrice(product.salePrice)}
-                        </span>
-                        <span className="text-sm text-gray-500 line-through">
-                          {formatPrice(product.price)}
-                        </span>
-                      </>
-                    ) : (
-                      <span className="text-lg font-bold text-gray-900">
-                        {formatPrice(product.price)}
-                      </span>
-                    )}
-                  </div>
-                  <div className="text-xs text-gray-500 mb-3">
-                    SKU: {product.sku}
-                  </div>
-                  <button className="w-full bg-black text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors duration-200">
-                    Add to Cart
-                  </button>
-                </div>
-              </div>
+              <ProductCard key={product._id} product={product} />
             ))}
           </div>
         )}
