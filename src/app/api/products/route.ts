@@ -27,7 +27,7 @@ const ProductSchema = new Schema({
 const Product = models.Product || model('Product', ProductSchema);
 
 // Inventory model for creating inventory record after product creation
-const Inventory = inventoryModels.Inventory || inventoryModel('Inventory', new InventorySchema({
+const Inventory = models.Inventory || model('Inventory', new Schema({
   productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
   quantity: { type: Number, required: true },
   location: { type: String, default: 'Main Warehouse' },
