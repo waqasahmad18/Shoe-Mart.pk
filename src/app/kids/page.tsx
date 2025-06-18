@@ -1,7 +1,6 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import Footer from '@/components/Footer';
 
 interface Product {
@@ -21,15 +20,6 @@ export default function KidsCollection() {
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState('newest');
   const [priceRange, setPriceRange] = useState('all');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    filterAndSortProducts();
-  }, [products, sortBy, priceRange, selectedCategory]);
 
   const fetchProducts = async () => {
     try {
@@ -47,7 +37,7 @@ export default function KidsCollection() {
     }
   };
 
-  const filterAndSortProducts = () => {
+  const filterAndSortProducts = useCallback(() => {
     let filtered = [...products];
 
     // Filter by price range
@@ -61,11 +51,6 @@ export default function KidsCollection() {
           return price >= min;
         }
       });
-    }
-
-    // Filter by category (if we add subcategories later)
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(product => product.category === selectedCategory);
     }
 
     // Sort products
@@ -86,7 +71,15 @@ export default function KidsCollection() {
     }
 
     setFilteredProducts(filtered);
-  };
+  }, [products, sortBy, priceRange]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    filterAndSortProducts();
+  }, [filterAndSortProducts]);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-PK', {
@@ -113,7 +106,7 @@ export default function KidsCollection() {
             Kids Collection
           </h1>
           <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto">
-            Discover our adorable collection of kids' footwear. From comfortable school shoes to fun sneakers, 
+            Discover our adorable collection of kids&apos; footwear. From comfortable school shoes to fun sneakers, 
             keep your little ones stylish and comfortable.
           </p>
         </div>
@@ -169,7 +162,7 @@ export default function KidsCollection() {
           <div className="text-center py-16">
             <div className="text-gray-400 text-6xl mb-4">👟</div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-            <p className="text-gray-600">Try adjusting your filters to find what you're looking for.</p>
+            <p className="text-gray-600">Try adjusting your filters to find what you&apos;re looking for.</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">

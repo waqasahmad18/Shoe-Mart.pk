@@ -1,7 +1,6 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import Footer from '@/components/Footer';
 
 interface Product {
@@ -21,15 +20,6 @@ export default function WomenCollection() {
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState('newest');
   const [priceRange, setPriceRange] = useState('all');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    filterAndSortProducts();
-  }, [products, sortBy, priceRange, selectedCategory]);
 
   const fetchProducts = async () => {
     try {
@@ -45,7 +35,7 @@ export default function WomenCollection() {
     }
   };
 
-  const filterAndSortProducts = () => {
+  const filterAndSortProducts = useCallback(() => {
     let filtered = [...products];
 
     // Filter by price range
@@ -59,11 +49,6 @@ export default function WomenCollection() {
           return price >= min;
         }
       });
-    }
-
-    // Filter by category (if we add subcategories later)
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(product => product.category === selectedCategory);
     }
 
     // Sort products
@@ -84,7 +69,15 @@ export default function WomenCollection() {
     }
 
     setFilteredProducts(filtered);
-  };
+  }, [products, sortBy, priceRange]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    filterAndSortProducts();
+  }, [filterAndSortProducts]);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-PK', {
@@ -108,10 +101,10 @@ export default function WomenCollection() {
       <div className="bg-gradient-to-r from-pink-100 to-purple-100 py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 text-center mb-4">
-            Women's Collection
+            Women&apos;s Collection
           </h1>
           <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto">
-            Discover our premium collection of women's footwear. From elegant heels to comfortable sneakers, 
+            Discover our premium collection of women&apos;s footwear. From elegant heels to comfortable sneakers, 
             find your perfect style.
           </p>
         </div>
@@ -167,7 +160,7 @@ export default function WomenCollection() {
           <div className="text-center py-16">
             <div className="text-gray-400 text-6xl mb-4">👠</div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-            <p className="text-gray-600">Try adjusting your filters to find what you're looking for.</p>
+            <p className="text-gray-600">Try adjusting your filters to find what you&apos;re looking for.</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
