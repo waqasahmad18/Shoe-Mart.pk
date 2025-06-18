@@ -57,8 +57,8 @@ export default function AdminProductsPage() {
           lastError = data.error || JSON.stringify(data);
           console.error('Image upload error:', data);
         }
-      } catch (err) {
-        lastError = (err as any)?.message || 'Unknown error';
+      } catch (err: unknown) {
+        lastError = err instanceof Error ? err.message : 'Unknown error';
         console.error('Image upload failed:', err);
       }
     }
