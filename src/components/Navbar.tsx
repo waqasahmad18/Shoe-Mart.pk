@@ -4,13 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const menuItems = [
-  { name: 'New & Featured', href: '#' },
-  { name: 'Women', href: '#' },
-  { name: 'Men', href: '#' },
-  { name: 'Kids', href: '#' },
-  { name: 'Collaborations', href: '#' },
-  { name: 'Sport', href: '#' },
-  { name: 'Sale', href: '#' },
+  { name: 'Women', href: '/women' },
+  { name: 'Men', href: '/men' },
+  { name: 'Kids', href: '/kids' },
 ];
 
 export default function Navbar() {
@@ -51,7 +47,7 @@ export default function Navbar() {
         </div>
       </div>
       {/* Menu (desktop) */}
-      <ul className="hidden md:flex gap-7 mt-4 md:mt-0 justify-start md:ml-10">
+      <ul className="hidden md:flex gap-7 mt-4 md:mt-0 justify-center">
         {menuItems.map((item) => (
           <li key={item.name}>
             <Link href={item.href} className="font-semibold hover:text-yellow-400 transition-colors duration-200">
