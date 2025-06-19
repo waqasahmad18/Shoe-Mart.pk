@@ -28,11 +28,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
 
-  const handleLogout = () => {
-    // Optionally clear any admin session here
-    router.push('/');
-  };
-
   return (
     <div className="min-h-screen h-full w-full flex flex-row items-stretch">
       {/* Sidebar */}
