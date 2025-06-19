@@ -246,7 +246,7 @@ export default function ProductDetailPage() {
       </div>
       {/* Reviews Section */}
       <div className="container mx-auto px-4 max-w-2xl">
-        <h2 className="text-2xl font-bold mb-4">Write a Review</h2>
+        <div className="font-bold text-xl text-black mb-2">Write a Review</div>
         <form onSubmit={handleReviewSubmit} className="bg-white rounded-xl shadow p-6 flex flex-col gap-4">
           {thankYou && <div className="text-green-600 text-sm">Thank you for your feedback!</div>}
           {reviewError && <div className="text-red-600 text-sm">{reviewError}</div>}
