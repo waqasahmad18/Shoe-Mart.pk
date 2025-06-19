@@ -22,7 +22,7 @@ export default function MoreProductsGrid() {
       setLoading(true);
       const res = await fetch('/api/products');
       const all = await res.json();
-      setWomenProducts(all.filter((p: any) => p.category === 'Women').slice(0, 4));
+      setWomenProducts((all as Product[]).filter((p: Product) => p.category === 'Women').slice(0, 4));
       setLoading(false);
     }
     fetchProducts();
