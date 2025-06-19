@@ -176,13 +176,13 @@ export default function AdminProductsPage() {
         <table className="min-w-full bg-white rounded-xl shadow text-sm md:text-base">
           <thead>
             <tr className="bg-gray-100 text-left">
-              <th className="p-2 md:p-3">Images</th>
-              <th className="p-2 md:p-3">Name</th>
-              <th className="p-2 md:p-3">Price</th>
-              <th className="p-2 md:p-3">Sale Price</th>
-              <th className="p-2 md:p-3">SKU</th>
-              <th className="p-2 md:p-3">Category</th>
-              <th className="p-2 md:p-3">Actions</th>
+              <th className="p-2 md:p-3 text-black font-bold">Images</th>
+              <th className="p-2 md:p-3 text-black font-bold">Name</th>
+              <th className="p-2 md:p-3 text-black font-bold">Price</th>
+              <th className="p-2 md:p-3 text-black font-bold">Sale Price</th>
+              <th className="p-2 md:p-3 text-black font-bold">SKU</th>
+              <th className="p-2 md:p-3 text-black font-bold">Category</th>
+              <th className="p-2 md:p-3 text-black font-bold">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -193,7 +193,7 @@ export default function AdminProductsPage() {
                     <Image key={i} src={img} alt="Product" width={48} height={48} className="w-10 h-10 md:w-12 md:h-12 object-cover rounded" />
                   ))}
                 </td>
-                <td className="p-2 md:p-3 font-semibold">{p.name}</td>
+                <td className="p-2 md:p-3 font-bold text-black">{p.name}</td>
                 <td className="p-2 md:p-3">Rs. {p.price}</td>
                 <td className="p-2 md:p-3">{p.salePrice ? `Rs. ${p.salePrice}` : '-'}</td>
                 <td className="p-2 md:p-3">{p.sku}</td>
