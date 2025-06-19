@@ -28,6 +28,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div className="min-h-screen h-full w-full flex flex-row items-stretch">
+      {/* Mobile Hamburger Button */}
+      <button
+        className="md:hidden fixed top-4 left-4 z-50 bg-black text-white p-2 rounded focus:outline-none"
+        onClick={() => setSidebarOpen(true)}
+        aria-label="Open sidebar"
+      >
+        <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
       {/* Sidebar */}
       <aside
         className={`bg-black text-white flex flex-col py-8 px-4 gap-4 border-r border-gray-900 w-64
