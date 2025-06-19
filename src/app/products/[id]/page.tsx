@@ -166,11 +166,11 @@ export default function ProductDetailPage() {
             {/* Static 4.5 stars */}
             {[1,2,3,4].map(i => <svg key={i} width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z"/></svg>)}
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><defs><linearGradient id="half"><stop offset="50%" stopColor="currentColor"/><stop offset="50%" stopColor="transparent"/></linearGradient></defs><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z" fill="url(#half)"/></svg>
-            <span className="text-gray-500 ml-2">4.5 (12 reviews)</span>
+            <span className="text-gray-700 ml-2">4.5 (12 reviews)</span>
           </div>
           {/* Sizes */}
           <div className="mb-2">
-            <div className="font-semibold text-gray-700 mb-1">Select Size:</div>
+            <div className="font-semibold text-gray-900 mb-1">Select Size:</div>
             <div className="flex gap-2 flex-wrap">
               {product.sizes && product.sizes.length > 0 ? (
                 product.sizes.map((size) => (
@@ -183,13 +183,13 @@ export default function ProductDetailPage() {
                   </button>
                 ))
               ) : (
-                <span className="text-gray-400 text-sm">No sizes available</span>
+                <span className="text-gray-700 text-sm">No sizes available</span>
               )}
             </div>
           </div>
           {/* Colors */}
           <div className="mb-2">
-            <div className="font-semibold text-gray-700 mb-1">Select Color:</div>
+            <div className="font-semibold text-gray-900 mb-1">Select Color:</div>
             <div className="flex gap-2 flex-wrap">
               {product.colors && product.colors.length > 0 ? (
                 product.colors.map((color) => (
@@ -204,7 +204,7 @@ export default function ProductDetailPage() {
                   </button>
                 ))
               ) : (
-                <span className="text-gray-400 text-sm">No colors available</span>
+                <span className="text-gray-700 text-sm">No colors available</span>
               )}
             </div>
           </div>
@@ -238,8 +238,8 @@ export default function ProductDetailPage() {
           {/* Description */}
           {product.description && (
             <div className="mt-6">
-              <div className="font-semibold text-gray-700 mb-1">Description:</div>
-              <p className="text-gray-600 text-base leading-relaxed">{product.description}</p>
+              <div className="font-semibold text-gray-900 mb-1">Description:</div>
+              <p className="text-gray-900 text-base leading-relaxed">{product.description}</p>
             </div>
           )}
         </motion.div>
