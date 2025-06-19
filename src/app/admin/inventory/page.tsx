@@ -57,22 +57,22 @@ export default function AdminInventoryPage() {
         <table className="min-w-full bg-white rounded-xl shadow text-sm md:text-base">
           <thead>
             <tr className="bg-gray-100 text-left">
-              <th className="p-2 md:p-3">Product</th>
-              <th className="p-2 md:p-3">SKU</th>
-              <th className="p-2 md:p-3">Quantity</th>
-              <th className="p-2 md:p-3">Location</th>
-              <th className="p-2 md:p-3">Last Updated</th>
-              <th className="p-2 md:p-3">Actions</th>
+              <th className="p-2 md:p-3 text-black font-bold">Product</th>
+              <th className="p-2 md:p-3 text-black font-bold">SKU</th>
+              <th className="p-2 md:p-3 text-black font-bold">Quantity</th>
+              <th className="p-2 md:p-3 text-black font-bold">Location</th>
+              <th className="p-2 md:p-3 text-black font-bold">Last Updated</th>
+              <th className="p-2 md:p-3 text-black font-bold">Actions</th>
             </tr>
           </thead>
           <tbody>
             {inventory.map((item: InventoryItem) => (
               <tr key={item._id} className="border-b">
-                <td className="p-2 md:p-3 font-semibold">{item.productId?.name}</td>
-                <td className="p-2 md:p-3">{item.productId?.sku}</td>
-                <td className="p-2 md:p-3">{item.quantity}</td>
-                <td className="p-2 md:p-3">{item.location}</td>
-                <td className="p-2 md:p-3">{item.updatedAt ? new Date(item.updatedAt).toLocaleString() : '-'}</td>
+                <td className="p-2 md:p-3 text-black font-bold">{item.productId?.name}</td>
+                <td className="p-2 md:p-3 text-black font-bold">{item.productId?.sku}</td>
+                <td className="p-2 md:p-3 text-black font-bold">{item.quantity}</td>
+                <td className="p-2 md:p-3 text-black font-bold">{item.location}</td>
+                <td className="p-2 md:p-3 text-black font-bold">{item.updatedAt ? new Date(item.updatedAt).toLocaleString() : '-'}</td>
                 <td className="p-2 md:p-3 flex flex-col md:flex-row gap-2">
                   <button className="bg-black text-white px-4 py-1 rounded" onClick={() => openForm(item)}>Update</button>
                 </td>

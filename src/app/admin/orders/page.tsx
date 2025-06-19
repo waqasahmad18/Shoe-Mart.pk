@@ -74,27 +74,27 @@ export default function AdminOrdersPage() {
           <table className="min-w-full bg-white rounded-xl shadow">
             <thead>
               <tr className="bg-gray-100 text-gray-700">
-                <th className="py-2 px-4">Customer</th>
-                <th className="py-2 px-4">Contact</th>
-                <th className="py-2 px-4">Address</th>
-                <th className="py-2 px-4">Items</th>
-                <th className="py-2 px-4">Status</th>
-                <th className="py-2 px-4">Action</th>
+                <th className="py-2 px-4 text-black font-bold">Customer</th>
+                <th className="py-2 px-4 text-black font-bold">Contact</th>
+                <th className="py-2 px-4 text-black font-bold">Address</th>
+                <th className="py-2 px-4 text-black font-bold">Items</th>
+                <th className="py-2 px-4 text-black font-bold">Status</th>
+                <th className="py-2 px-4 text-black font-bold">Action</th>
               </tr>
             </thead>
             <tbody>
               {orders.map((order) => (
                 <tr key={order._id} className="border-b">
-                  <td className="py-2 px-4 font-semibold">{order.name}</td>
-                  <td className="py-2 px-4 text-sm">
+                  <td className="py-2 px-4 font-bold text-black">{order.name}</td>
+                  <td className="py-2 px-4 text-sm text-black font-bold">
                     <div>{order.email}</div>
                     <div>{order.phone}</div>
                   </td>
-                  <td className="py-2 px-4 text-sm">
+                  <td className="py-2 px-4 text-sm text-black font-bold">
                     <div>{order.address}</div>
                     <div>{order.city}, {order.zip}</div>
                   </td>
-                  <td className="py-2 px-4 text-sm">
+                  <td className="py-2 px-4 text-sm text-black font-bold">
                     <ul className="list-disc ml-4">
                       {order.items.map((item, idx) => (
                         <li key={idx}>
@@ -103,7 +103,7 @@ export default function AdminOrdersPage() {
                       ))}
                     </ul>
                   </td>
-                  <td className="py-2 px-4 capitalize font-bold">
+                  <td className="py-2 px-4 capitalize font-bold text-black">
                     {order.status}
                   </td>
                   <td className="py-2 px-4">

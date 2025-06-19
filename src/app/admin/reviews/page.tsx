@@ -65,22 +65,22 @@ export default function AdminReviewsPage() {
           <table className="min-w-full bg-white rounded-xl shadow text-sm md:text-base">
             <thead>
               <tr className="bg-gray-100 text-left">
-                <th className="p-2 md:p-3">Product ID</th>
-                <th className="p-2 md:p-3">Name</th>
-                <th className="p-2 md:p-3">Rating</th>
-                <th className="p-2 md:p-3">Text</th>
-                <th className="p-2 md:p-3">Status</th>
-                <th className="p-2 md:p-3">Actions</th>
+                <th className="p-2 md:p-3 text-black font-bold">Product ID</th>
+                <th className="p-2 md:p-3 text-black font-bold">Name</th>
+                <th className="p-2 md:p-3 text-black font-bold">Rating</th>
+                <th className="p-2 md:p-3 text-black font-bold">Text</th>
+                <th className="p-2 md:p-3 text-black font-bold">Status</th>
+                <th className="p-2 md:p-3 text-black font-bold">Actions</th>
               </tr>
             </thead>
             <tbody>
               {reviews.map((review) => (
                 <tr key={review._id} className="border-b">
-                  <td className="p-2 md:p-3">{review.productId}</td>
-                  <td className="p-2 md:p-3">{review.name}</td>
-                  <td className="p-2 md:p-3">{review.rating}</td>
-                  <td className="p-2 md:p-3">{review.text}</td>
-                  <td className="p-2 md:p-3">{review.status}</td>
+                  <td className="p-2 md:p-3 text-black font-bold">{review.productId}</td>
+                  <td className="p-2 md:p-3 text-black font-bold">{review.name}</td>
+                  <td className="p-2 md:p-3 text-black font-bold">{review.rating}</td>
+                  <td className="p-2 md:p-3 text-black font-bold">{review.text}</td>
+                  <td className="p-2 md:p-3 text-black font-bold">{review.status}</td>
                   <td className="p-2 md:p-3 flex gap-2">
                     {review.status === "pending" && (
                       <button

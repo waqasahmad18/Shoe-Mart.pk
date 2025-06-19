@@ -194,10 +194,10 @@ export default function AdminProductsPage() {
                   ))}
                 </td>
                 <td className="p-2 md:p-3 font-bold text-black">{p.name}</td>
-                <td className="p-2 md:p-3">Rs. {p.price}</td>
-                <td className="p-2 md:p-3">{p.salePrice ? `Rs. ${p.salePrice}` : '-'}</td>
-                <td className="p-2 md:p-3">{p.sku}</td>
-                <td className="p-2 md:p-3">{p.category}</td>
+                <td className="p-2 md:p-3 text-black font-bold">Rs. {p.price}</td>
+                <td className="p-2 md:p-3 text-black font-bold">{p.salePrice ? `Rs. ${p.salePrice}` : '-'}</td>
+                <td className="p-2 md:p-3 text-black font-bold">{p.sku}</td>
+                <td className="p-2 md:p-3 text-black font-bold">{p.category}</td>
                 <td className="p-2 md:p-3 flex flex-col md:flex-row gap-2">
                   <button className="bg-blue-600 text-white px-3 py-1 rounded" onClick={() => handleEdit(p)}>Edit</button>
                   <button className="bg-red-600 text-white px-3 py-1 rounded" onClick={() => handleDelete(p._id)}>Delete</button>
