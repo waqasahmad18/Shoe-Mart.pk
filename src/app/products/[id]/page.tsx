@@ -177,7 +177,7 @@ export default function ProductDetailPage() {
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-4 py-2 rounded-lg border-2 font-semibold transition-all duration-200 ${selectedSize === size ? 'border-yellow-400 bg-yellow-100' : 'border-gray-300 bg-white hover:border-yellow-400'}`}
+                    className={`px-4 py-2 rounded-lg border-2 font-semibold transition-all duration-200 text-black ${selectedSize === size ? 'border-yellow-400 bg-yellow-100' : 'border-gray-300 bg-white hover:border-yellow-400'}`}
                   >
                     {size}
                   </button>
@@ -208,7 +208,7 @@ export default function ProductDetailPage() {
               )}
             </div>
           </div>
-          <QuantitySelector value={quantity} onChange={setQuantity} min={1} max={10} />
+          <QuantitySelector value={quantity} onChange={setQuantity} min={1} max={10} className="text-black" />
           {/* Add to Cart Button */}
           <motion.button
             whileHover={{ scale: 1.04 }}
@@ -258,11 +258,12 @@ export default function ProductDetailPage() {
           <button type="submit" className="bg-black text-white py-2 rounded-lg font-semibold">Submit Review</button>
         </form>
         <div className="mt-8">
-          <h3 className="text-xl font-semibold mb-2">Customer Reviews</h3>
+          <div className="font-bold text-xl text-black mb-2">Customer Reviews</div>
           <Reviews reviews={publishedReviews} />
         </div>
       </div>
       {/* Related Products at the end */}
+      <div className="font-bold text-xl text-black mb-2">Related Products</div>
       <RelatedProducts currentProductId={product._id} category={product.category} />
       <Footer />
       <CartPopup open={cartOpen} onClose={() => setCartOpen(false)} />
