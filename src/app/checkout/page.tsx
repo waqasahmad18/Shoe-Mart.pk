@@ -50,13 +50,13 @@ export default function CheckoutPage() {
         <p className="text-lg text-gray-700">Fast, Secure &amp; Easy Checkout</p>
       </motion.div>
       <form onSubmit={handleSubmit} className="max-w-lg w-full mx-auto bg-white rounded-xl shadow-lg p-8 flex flex-col gap-4 mt-4">
-        <input name="name" value={form.name} onChange={handleInput} placeholder="Full Name" className="border p-2 rounded" required />
-        <input name="email" value={form.email} onChange={handleInput} placeholder="Email" type="email" className="border p-2 rounded" required />
-        <input name="phone" value={form.phone} onChange={handleInput} placeholder="Phone" className="border p-2 rounded" required />
-        <textarea name="address" value={form.address} onChange={handleInput} placeholder="Address" className="border p-2 rounded" required />
+        <input name="name" value={form.name} onChange={handleInput} placeholder="Full Name" className="border p-2 rounded text-black font-bold placeholder-gray-700" required />
+        <input name="email" value={form.email} onChange={handleInput} placeholder="Email" type="email" className="border p-2 rounded text-black font-bold placeholder-gray-700" required />
+        <input name="phone" value={form.phone} onChange={handleInput} placeholder="Phone" className="border p-2 rounded text-black font-bold placeholder-gray-700" required />
+        <textarea name="address" value={form.address} onChange={handleInput} placeholder="Address" className="border p-2 rounded text-black font-bold placeholder-gray-700" required />
         <div className="flex gap-4">
-          <input name="city" value={form.city} onChange={handleInput} placeholder="City" className="border p-2 rounded flex-1" required />
-          <input name="zip" value={form.zip} onChange={handleInput} placeholder="ZIP Code" className="border p-2 rounded w-32" required />
+          <input name="city" value={form.city} onChange={handleInput} placeholder="City" className="border p-2 rounded flex-1 text-black font-bold placeholder-gray-700" required />
+          <input name="zip" value={form.zip} onChange={handleInput} placeholder="ZIP Code" className="border p-2 rounded w-32 text-black font-bold placeholder-gray-700" required />
         </div>
         {error && <div className="text-red-600 text-sm">{error}</div>}
         <button type="submit" className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-3 rounded-lg text-lg shadow-lg transition-all duration-200 mt-2" disabled={submitting}>
