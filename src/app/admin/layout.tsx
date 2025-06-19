@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 const navLinks = [
   { name: 'Dashboard', href: '/admin', icon: (
@@ -26,7 +25,6 @@ const navLinks = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const router = useRouter();
 
   return (
     <div className="min-h-screen h-full w-full flex flex-row items-stretch">
