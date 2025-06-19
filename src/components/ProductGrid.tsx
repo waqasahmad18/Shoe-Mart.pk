@@ -2,9 +2,20 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  salePrice?: number;
+  images: string[];
+  category: string;
+  sku: string;
+  description?: string;
+}
+
 export default function ProductGrid() {
-  const [menProducts, setMenProducts] = useState<any[]>([]);
-  const [womenProducts, setWomenProducts] = useState<any[]>([]);
+  const [menProducts, setMenProducts] = useState<Product[]>([]);
+  const [womenProducts, setWomenProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -12,8 +23,8 @@ export default function ProductGrid() {
       setLoading(true);
       const res = await fetch('/api/products');
       const all = await res.json();
-      setMenProducts(all.filter((p: any) => p.category === 'Men').slice(0, 4));
-      setWomenProducts(all.filter((p: any) => p.category === 'Women').slice(0, 4));
+      setMenProducts(all.filter((p: Product) => p.category === 'Men').slice(0, 4));
+      setWomenProducts(all.filter((p: Product) => p.category === 'Women').slice(0, 4));
       setLoading(false);
     }
     fetchProducts();

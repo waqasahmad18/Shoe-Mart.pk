@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const productId = searchParams.get('productId');
   const admin = searchParams.get('admin');
-  let filter: any = {};
+  const filter: Record<string, unknown> = {};
   if (productId) filter.productId = productId;
   if (!admin) filter.status = 'published';
   const reviews = await Review.find(filter).sort({ createdAt: -1 });

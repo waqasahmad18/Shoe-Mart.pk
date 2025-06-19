@@ -25,8 +25,8 @@ export default function AdminReviewsPage() {
       if (!res.ok) throw new Error("Failed to fetch reviews");
       const data = await res.json();
       setReviews(data);
-    } catch (err: any) {
-      setError(err.message || "Unknown error");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setLoading(false);
     }
@@ -46,8 +46,8 @@ export default function AdminReviewsPage() {
       });
       if (!res.ok) throw new Error("Failed to update review");
       await fetchReviews();
-    } catch (err: any) {
-      alert(err.message || "Action failed");
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : 'Action failed');
     } finally {
       setActionLoading(null);
     }

@@ -1,6 +1,5 @@
 'use client';
 import React, { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 
@@ -79,14 +78,6 @@ export default function WomenCollection() {
   useEffect(() => {
     filterAndSortProducts();
   }, [filterAndSortProducts]);
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-PK', {
-      style: 'currency',
-      currency: 'PKR',
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
 
   if (loading) {
     return (

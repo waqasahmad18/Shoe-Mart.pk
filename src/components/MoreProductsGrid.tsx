@@ -2,8 +2,19 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  salePrice?: number;
+  images: string[];
+  category: string;
+  sku: string;
+  description?: string;
+}
+
 export default function MoreProductsGrid() {
-  const [womenProducts, setWomenProducts] = useState<any[]>([]);
+  const [womenProducts, setWomenProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,7 +30,7 @@ export default function MoreProductsGrid() {
 
   return (
     <section className="w-full py-10 px-2 md:px-0" data-aos="fade-up">
-      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Women's Collection</h2>
+      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Women&apos;s Collection</h2>
       {loading ? (
         <div className="text-center text-gray-500 py-10">Loading products...</div>
       ) : (

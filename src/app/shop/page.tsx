@@ -4,10 +4,21 @@ import ProductCard from "@/components/ProductCard";
 import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
 
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  salePrice?: number;
+  images: string[];
+  category: string;
+  sku: string;
+  description?: string;
+}
+
 const categories = ["All", "Men", "Women", "Kids"];
 
 export default function ShopPage() {
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState("All");
 

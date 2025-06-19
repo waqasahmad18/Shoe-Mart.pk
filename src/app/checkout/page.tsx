@@ -33,8 +33,8 @@ export default function CheckoutPage() {
       if (!res.ok) throw new Error("Order failed");
       clearCart();
       router.push("/thankyou");
-    } catch (err: any) {
-      setError(err.message || "Order failed");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Order failed');
     } finally {
       setSubmitting(false);
     }

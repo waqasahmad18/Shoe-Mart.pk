@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const CATEGORIES = ['Men', 'Women', 'Kids'];
 
@@ -144,7 +145,7 @@ export default function AdminProductsPage() {
       let result;
       try {
         result = JSON.parse(text);
-      } catch (err) {
+      } catch {
         setError('Server error: Invalid JSON response. Raw: ' + text);
         setUploading(false);
         return;
@@ -189,7 +190,7 @@ export default function AdminProductsPage() {
               <tr key={p._id} className="border-b">
                 <td className="p-2 md:p-3 flex gap-2 flex-wrap">
                   {p.images?.map((img: string, i: number) => (
-                    <img key={i} src={img} alt="Product" className="w-10 h-10 md:w-12 md:h-12 object-cover rounded" />
+                    <Image key={i} src={img} alt="Product" width={48} height={48} className="w-10 h-10 md:w-12 md:h-12 object-cover rounded" />
                   ))}
                 </td>
                 <td className="p-2 md:p-3 font-semibold">{p.name}</td>

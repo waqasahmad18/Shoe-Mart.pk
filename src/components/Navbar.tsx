@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from './CartContext';
 import CartPopup from './CartPopup';
@@ -12,6 +11,17 @@ const menuItems = [
   { name: 'Kids', href: '/kids' },
 ];
 
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  salePrice?: number;
+  images: string[];
+  category: string;
+  sku: string;
+  description?: string;
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
@@ -20,7 +30,7 @@ export default function Navbar() {
 
   // Dynamic search state
   const [search, setSearch] = useState('');
-  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [suggestions, setSuggestions] = useState<Product[]>([]);
   const [searchLoading, setSearchLoading] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const router = useRouter();
@@ -37,7 +47,7 @@ export default function Navbar() {
     setSearchLoading(true);
     const res = await fetch('/api/products');
     const products = await res.json();
-    const filtered = products.filter((p: any) => p.name.toLowerCase().includes(value.toLowerCase()));
+    const filtered = products.filter((p: Product) => p.name.toLowerCase().includes(value.toLowerCase()));
     setSuggestions(filtered.slice(0, 5));
     setSearchLoading(false);
   };

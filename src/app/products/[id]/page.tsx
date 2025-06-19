@@ -5,8 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
-import SizesSelector from '@/components/SizesSelector';
-import ColorsSelector from '@/components/ColorsSelector';
 import RelatedProducts from '@/components/RelatedProducts';
 import Reviews from '@/components/Reviews';
 import { useCart } from '@/components/CartContext';
@@ -33,7 +31,6 @@ export default function ProductDetailPage() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
-  const [reviews, setReviews] = useState<{name: string, rating: number, text: string}[]>([]);
   const [reviewForm, setReviewForm] = useState({ name: '', rating: 5, text: '' });
   const [reviewError, setReviewError] = useState('');
   const [thankYou, setThankYou] = useState(false);
@@ -88,14 +85,6 @@ export default function ProductDetailPage() {
   const isOnSale = product.salePrice && product.salePrice < product.price;
   const discount = isOnSale ? Math.round(100 - ((product.salePrice! / product.price) * 100)) : 0;
   const formatPrice = (price: number) => new Intl.NumberFormat('en-PK', { style: 'currency', currency: 'PKR', minimumFractionDigits: 0 }).format(price);
-
-  // Ensure sizes/colors are always arrays
-  const getArray = (val: string[] | string | undefined) => {
-    if (!val) return [];
-    if (Array.isArray(val)) return val;
-    if (typeof val === 'string') return val.split(',').map(s => s.trim()).filter(Boolean);
-    return [];
-  };
 
   // Review form handlers
   const handleReviewInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
