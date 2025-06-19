@@ -22,6 +22,8 @@ const ProductSchema = new Schema({
   },
   description: String,
   inventory: { type: Number, default: 0 },
+  sizes: [String],
+  colors: [String],
 }, { timestamps: true });
 
 const Product = models.Product || model('Product', ProductSchema);
@@ -68,6 +70,17 @@ export async function POST(req: NextRequest) {
     // Handle product creation
     await connectDB();
     const data = await req.json();
+    console.log('API received product data:', data);
+    // Ensure sizes and colors are arrays
+    if (data.sizes && !Array.isArray(data.sizes)) {
+      if (typeof data.sizes === 'string') data.sizes = data.sizes.split(',').map((s: string) => s.trim()).filter(Boolean);
+      else data.sizes = [];
+    }
+    if (data.colors && !Array.isArray(data.colors)) {
+      if (typeof data.colors === 'string') data.colors = data.colors.split(',').map((c: string) => c.trim()).filter(Boolean);
+      else data.colors = [];
+    }
+    console.log('API normalized sizes:', data.sizes, 'colors:', data.colors);
     if (!data.images || !Array.isArray(data.images) || data.images.length === 0 || data.images.length > 5) {
       return NextResponse.json({ error: 'Please upload 1-5 images.' }, { status: 400 });
     }
@@ -100,6 +113,16 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ error: 'Product id is required' }, { status: 400 });
   }
   const data = await req.json();
+  // Ensure sizes and colors are arrays
+  if (data.sizes && !Array.isArray(data.sizes)) {
+    if (typeof data.sizes === 'string') data.sizes = data.sizes.split(',').map((s: string) => s.trim()).filter(Boolean);
+    else data.sizes = [];
+  }
+  if (data.colors && !Array.isArray(data.colors)) {
+    if (typeof data.colors === 'string') data.colors = data.colors.split(',').map((c: string) => c.trim()).filter(Boolean);
+    else data.colors = [];
+  }
+  console.log('API PUT normalized sizes:', data.sizes, 'colors:', data.colors);
   const updated = await Product.findByIdAndUpdate(id, data, { new: true });
   return NextResponse.json(updated);
 } 

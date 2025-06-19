@@ -4,16 +4,16 @@ import Link from 'next/link';
 
 const menuItems = [
   { name: 'Home', href: '/' },
-  { name: 'Shop', href: '#' },
-  { name: 'About', href: '#' },
-  { name: 'Contact', href: '#' },
-  { name: 'FAQs', href: '#' },
+  { name: 'Shop', href: '/shop' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
+  { name: 'FAQs', href: '/faqs' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#111] text-gray-200 pt-14 pb-6 px-6 border-t border-gray-800 mt-0" data-aos="fade-up">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 md:gap-0 justify-between items-center md:items-center mb-8 text-center md:text-left">
+    <footer className="w-full bg-[#111] text-gray-200 pt-14 pb-6 px-0 border-t border-gray-800 mt-0" data-aos="fade-up">
+      <div className="flex flex-col md:flex-row gap-10 md:gap-0 justify-between items-center md:items-center mb-8 text-center md:text-left w-full px-6">
         {/* Logo & About */}
         <div className="flex flex-col items-center md:items-start gap-3 max-w-xs">
           <div className="flex items-center gap-2 mb-2 justify-center md:justify-start">

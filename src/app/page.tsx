@@ -3,7 +3,6 @@ import BannerSection from '../components/BannerSection'
 import ProductGrid from '../components/ProductGrid'
 import PromoSection from '../components/PromoSection'
 import WhyChooseUsSection from '../components/WhyChooseUsSection'
-import MoreProductsGrid from '../components/MoreProductsGrid'
 import ReviewCarouselSection from '../components/ReviewCarouselSection'
 import NewsletterSection from '../components/NewsletterSection'
 import Footer from '../components/Footer'
@@ -16,7 +15,6 @@ export default function Home() {
       <ProductGrid />
       <PromoSection />
       <WhyChooseUsSection />
-      <MoreProductsGrid />
       <ReviewCarouselSection />
       <NewsletterSection />
       <Footer />

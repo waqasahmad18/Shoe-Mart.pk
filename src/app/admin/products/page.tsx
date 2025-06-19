@@ -12,13 +12,15 @@ interface Product {
   category: string;
   description?: string;
   images: string[];
+  sizes?: string[];
+  colors?: string[];
 }
 
 export default function AdminProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({
-    name: '', price: '', salePrice: '', sku: '', category: '', description: '', images: [] as string[], imageFiles: [] as File[]
+    name: '', price: '', salePrice: '', sku: '', category: '', description: '', images: [] as string[], imageFiles: [] as File[], sizes: '' as string, colors: '' as string
   });
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
@@ -78,6 +80,8 @@ export default function AdminProductsPage() {
       description: product.description || '',
       images: product.images || [],
       imageFiles: [],
+      sizes: Array.isArray(product.sizes) ? product.sizes.join(', ') : '',
+      colors: Array.isArray(product.colors) ? product.colors.join(', ') : '',
     });
     setEditId(product._id);
     setShowForm(true);
@@ -93,6 +97,10 @@ export default function AdminProductsPage() {
     e.preventDefault();
     setUploading(true);
     setError('');
+    // Parse comma-separated sizes/colors
+    const sizes = form.sizes.split(',').map(s => s.trim()).filter(Boolean);
+    const colors = form.colors.split(',').map(c => c.trim()).filter(Boolean);
+
     try {
       let imageUrls = form.images;
       if (form.imageFiles.length === 0 && !editId) {
@@ -114,6 +122,8 @@ export default function AdminProductsPage() {
         return;
       }
       const method = editId ? 'PUT' : 'POST';
+      // Debug log for sizes and colors
+      console.log('Submitting product with sizes:', sizes, 'colors:', colors);
       const res = await fetch('/api/products' + (editId ? `?id=${editId}` : ''), {
         method,
         headers: { 'Content-Type': 'application/json' },
@@ -125,11 +135,23 @@ export default function AdminProductsPage() {
           category: form.category,
           description: form.description,
           images: imageUrls,
+          sizes,
+          colors,
         }),
       });
-      if (!res.ok) throw new Error((await res.json()).error || 'Failed to add product');
+      const text = await res.text();
+      console.log('Raw response:', text);
+      let result;
+      try {
+        result = JSON.parse(text);
+      } catch (err) {
+        setError('Server error: Invalid JSON response. Raw: ' + text);
+        setUploading(false);
+        return;
+      }
+      if (!res.ok) throw new Error(result.error || 'Failed to add product');
       setShowForm(false);
-      setForm({ name: '', price: '', salePrice: '', sku: '', category: '', description: '', images: [], imageFiles: [] });
+      setForm({ name: '', price: '', salePrice: '', sku: '', category: '', description: '', images: [], imageFiles: [], sizes: '', colors: '' });
       setEditId(null);
       fetch('/api/products').then(res => res.json()).then(setProducts);
     } catch (err: unknown) {
@@ -138,6 +160,9 @@ export default function AdminProductsPage() {
       setUploading(false);
     }
   };
+
+  // Debug log for form state
+  console.log('Form state sizes:', form.sizes, 'colors:', form.colors);
 
   return (
     <div>
@@ -184,25 +209,24 @@ export default function AdminProductsPage() {
       {/* Add Product Modal/Form */}
       {showForm && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-          <form className="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg flex flex-col gap-4 relative" onSubmit={handleSubmit}>
+          <form className="bg-white rounded-xl shadow-lg p-2 md:p-4 w-full max-w-xl flex flex-col gap-2 relative" onSubmit={handleSubmit}>
             <button type="button" className="absolute top-2 right-2 text-2xl" onClick={() => setShowForm(false)}>&times;</button>
             <h2 className="text-xl font-bold mb-2">Add Product</h2>
             {error && <div className="text-red-600 text-sm mb-2">{error}</div>}
-            <input name="name" value={form.name} onChange={handleInput} required placeholder="Product Name" className="border p-2 rounded" />
-            <input name="price" value={form.price} onChange={handleInput} required placeholder="Price" type="number" className="border p-2 rounded" />
-            <input name="salePrice" value={form.salePrice} onChange={handleInput} placeholder="Sale Price" type="number" className="border p-2 rounded" />
-            <input name="sku" value={form.sku} onChange={handleInput} required placeholder="SKU" className="border p-2 rounded" />
-            <select name="category" value={form.category} onChange={handleInput} required className="border p-2 rounded">
+            <input name="name" value={form.name} onChange={handleInput} required placeholder="Product Name" className="border p-2 py-1.5 rounded" />
+            <input name="price" value={form.price} onChange={handleInput} required placeholder="Price" type="number" className="border p-2 py-1.5 rounded" />
+            <input name="salePrice" value={form.salePrice} onChange={handleInput} placeholder="Sale Price" type="number" className="border p-2 py-1.5 rounded" />
+            <input name="sku" value={form.sku} onChange={handleInput} required placeholder="SKU" className="border p-2 py-1.5 rounded" />
+            <select name="category" value={form.category} onChange={handleInput} required className="border p-2 py-1.5 rounded">
               <option value="">Select Category</option>
               {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
-            <textarea name="description" value={form.description} onChange={handleInput} placeholder="Description" className="border p-2 rounded" />
-            <input type="file" accept="image/*" multiple onChange={handleFiles} required className="border p-2 rounded" />
-            <div className="flex gap-2 flex-wrap">
-              {form.imageFiles.length > 0 && Array.from(form.imageFiles).map((file, i) => (
-                <span key={i} className="text-xs bg-gray-200 px-2 py-1 rounded">{file.name}</span>
-              ))}
-            </div>
+            <textarea name="description" value={form.description} onChange={handleInput} placeholder="Description" className="border p-2 py-1.5 rounded" />
+            <input type="file" accept="image/*" multiple onChange={handleFiles} required className="border p-2 py-1.5 rounded" />
+            <input name="sizes" value={form.sizes} onChange={handleInput} placeholder="Add sizes (e.g. 44, 45, 46)" className="border p-2 py-1.5 rounded" />
+            <span className="text-xs text-gray-500 mb-2">Comma separated. Example: 44, 45, 46</span>
+            <input name="colors" value={form.colors} onChange={handleInput} placeholder="Add colors (e.g. Black, Red, Blue)" className="border p-2 py-1.5 rounded" />
+            <span className="text-xs text-gray-500 mb-2">Comma separated. Example: Black, Red, Blue</span>
             <button type="submit" className="bg-black text-white py-2 rounded-lg font-semibold mt-2" disabled={uploading}>{uploading ? 'Uploading...' : 'Add Product'}</button>
           </form>
         </div>
