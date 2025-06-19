@@ -35,11 +35,11 @@ export default function RelatedProducts({ currentProductId, category }: Props) {
 
   return (
     <div className="mt-16">
-      <h2 className="text-2xl font-bold mb-6">Related Products</h2>
+      <h2 className="text-2xl font-bold mb-6 text-black">Related Products</h2>
       {loading ? (
-        <div className="text-gray-400">Loading...</div>
+        <div className="text-black">Loading...</div>
       ) : related.length === 0 ? (
-        <div className="text-gray-400">No related products found.</div>
+        <div className="text-black">No related products found.</div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {related.map((product) => (

@@ -8,11 +8,11 @@ interface Review {
 
 export default function Reviews({ reviews }: { reviews: Review[] }) {
   if (!reviews.length) {
-    return <div className="text-gray-400">No reviews yet.</div>;
+    return <div className="text-black">No reviews yet.</div>;
   }
   return (
     <div className="mt-16">
-      <h2 className="text-2xl font-bold mb-6">Customer Reviews</h2>
+      <h2 className="text-2xl font-bold mb-6 text-black">Customer Reviews</h2>
       <div className="flex flex-col gap-6">
         {reviews.map((review, i) => (
           <div key={i} className="bg-white rounded-xl shadow p-6 flex flex-col gap-2">

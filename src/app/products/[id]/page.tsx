@@ -250,11 +250,11 @@ export default function ProductDetailPage() {
         <form onSubmit={handleReviewSubmit} className="bg-white rounded-xl shadow p-6 flex flex-col gap-4">
           {thankYou && <div className="text-green-600 text-sm">Thank you for your feedback!</div>}
           {reviewError && <div className="text-red-600 text-sm">{reviewError}</div>}
-          <input name="name" value={reviewForm.name} onChange={handleReviewInput} placeholder="Your Name" className="border p-2 rounded" required />
-          <select name="rating" value={reviewForm.rating} onChange={handleReviewInput} className="border p-2 rounded w-32">
+          <input name="name" value={reviewForm.name} onChange={handleReviewInput} placeholder="Your Name" className="border p-2 rounded text-black placeholder-gray-700" required />
+          <select name="rating" value={reviewForm.rating} onChange={handleReviewInput} className="border p-2 rounded w-32 text-black">
             {[5,4,3,2,1].map(n => <option key={n} value={n}>{n} Star{n > 1 ? 's' : ''}</option>)}
           </select>
-          <textarea name="text" value={reviewForm.text} onChange={handleReviewInput} placeholder="Your review..." className="border p-2 rounded" rows={3} required />
+          <textarea name="text" value={reviewForm.text} onChange={handleReviewInput} placeholder="Your review..." className="border p-2 rounded text-black placeholder-gray-700" rows={3} required />
           <button type="submit" className="bg-black text-white py-2 rounded-lg font-semibold">Submit Review</button>
         </form>
         <div className="mt-8">
@@ -263,7 +263,6 @@ export default function ProductDetailPage() {
         </div>
       </div>
       {/* Related Products at the end */}
-      <div className="font-bold text-xl text-black mb-2">Related Products</div>
       <RelatedProducts currentProductId={product._id} category={product.category} />
       <Footer />
       <CartPopup open={cartOpen} onClose={() => setCartOpen(false)} />
