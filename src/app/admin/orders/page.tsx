@@ -64,7 +64,7 @@ export default function AdminOrdersPage() {
 
   return (
     <div className="w-full p-2 md:p-8">
-      <h1 className="text-2xl font-bold mb-6 text-gray-900">Orders</h1>
+      <h1 className="text-2xl font-bold text-black mb-6">Orders</h1>
       {loading ? (
         <div>Loading orders...</div>
       ) : orders.length === 0 ? (

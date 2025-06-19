@@ -168,7 +168,7 @@ export default function AdminProductsPage() {
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Products</h1>
+        <h1 className="text-2xl font-bold text-black mb-8">Products</h1>
         <button className="bg-black text-white px-6 py-2 rounded-lg font-semibold" onClick={() => setShowForm(true)}>Add Product</button>
       </div>
       {/* Product List */}
@@ -212,7 +212,7 @@ export default function AdminProductsPage() {
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <form className="bg-white rounded-xl shadow-lg p-2 md:p-4 w-full max-w-xl flex flex-col gap-2 relative" onSubmit={handleSubmit}>
             <button type="button" className="absolute top-2 right-2 text-2xl" onClick={() => setShowForm(false)}>&times;</button>
-            <h2 className="text-xl font-bold mb-2">Add Product</h2>
+            <h2 className="text-xl font-bold text-black mb-2">Add Product</h2>
             {error && <div className="text-red-600 text-sm mb-2">{error}</div>}
             <input name="name" value={form.name} onChange={handleInput} required placeholder="Product Name" className="border p-2 py-1.5 rounded" />
             <input name="price" value={form.price} onChange={handleInput} required placeholder="Price" type="number" className="border p-2 py-1.5 rounded" />

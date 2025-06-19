@@ -8,9 +8,9 @@ export default function AdminSettingsPage() {
 
   return (
     <div className="w-full max-w-xl mx-auto bg-white rounded-xl shadow p-8 mt-6">
-      <h1 className="text-2xl font-bold mb-6 text-gray-900">Settings</h1>
+      <h1 className="text-2xl font-bold text-black mb-6">Settings</h1>
       <div className="mb-6">
-        <h2 className="text-lg font-semibold mb-2 text-gray-800">Store Info</h2>
+        <h2 className="text-lg font-semibold mb-2 text-black">Store Info</h2>
         <div className="flex flex-col gap-3">
           <label className="text-sm font-medium text-gray-700">Store Name</label>
           <input
@@ -29,7 +29,7 @@ export default function AdminSettingsPage() {
         </div>
       </div>
       <div className="mb-6">
-        <h2 className="text-lg font-semibold mb-2 text-gray-800">Maintenance Mode</h2>
+        <h2 className="text-lg font-semibold mb-2 text-black">Maintenance Mode</h2>
         <div className="flex items-center gap-3">
           <span className="text-gray-700">Off</span>
           <button

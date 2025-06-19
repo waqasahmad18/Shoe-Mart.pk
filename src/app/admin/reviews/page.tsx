@@ -55,7 +55,7 @@ export default function AdminReviewsPage() {
 
   return (
     <div className="p-4 md:p-8">
-      <h1 className="text-2xl font-bold mb-6">Customer Reviews Moderation</h1>
+      <h1 className="text-2xl font-bold text-black mb-6">Customer Reviews Moderation</h1>
       {loading ? (
         <div>Loading...</div>
       ) : error ? (

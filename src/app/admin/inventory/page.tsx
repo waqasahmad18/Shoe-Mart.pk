@@ -52,7 +52,7 @@ export default function AdminInventoryPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-8">Inventory</h1>
+      <h1 className="text-2xl font-bold text-black mb-8">Inventory</h1>
       <div className="overflow-x-auto w-full">
         <table className="min-w-full bg-white rounded-xl shadow text-sm md:text-base">
           <thead>

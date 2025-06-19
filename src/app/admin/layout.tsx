@@ -53,19 +53,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               onClick={() => setSidebarOpen(false)}
             >
               <span>{link.icon}</span>
-              <span>{link.name}</span>
+              <span className="text-white font-semibold">{link.name}</span>
             </Link>
           ))}
         </nav>
       </aside>
-      {/* Mobile Top Bar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-black text-white flex items-center justify-between px-4 py-3 shadow">
-        <button onClick={() => setSidebarOpen(true)} className="focus:outline-none">
-          <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-        <div className="text-lg font-extrabold tracking-wide">Admin Panel</div>
-        <button onClick={handleLogout} className="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded-lg transition-all">Logout</button>
-      </div>
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-screen bg-[#f7f7f7] mt-14 md:mt-0">
         {/* Remove custom admin top bar's logout button, NavbarDashboard handles it */}
